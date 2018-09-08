@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Solution {
+
+	public static int howManyGames(int salesPrice, int amountOfDiscount, int minimumSalesPrice, int availableAmount) {
+
+		int numberOfGames = 0;
+		if (availableAmount < salesPrice) {
+			return numberOfGames;
+		}
+
+		while (salesPrice >= minimumSalesPrice && availableAmount >= 0) {
+			numberOfGames++;
+			availableAmount -= salesPrice;
+			salesPrice -= amountOfDiscount;
+		}
+
+		numberOfGames += availableAmount / minimumSalesPrice;
+
+		return numberOfGames;
+	}
+
+	public static void main(String[] args) {
+
+		Scanner reader = new Scanner(System.in);
+
+		int salesPrice = reader.nextInt();
+		int amountOfDiscount = reader.nextInt();
+		int minimumSalesPrice = reader.nextInt();
+		int availableAmount = reader.nextInt();
+		reader.close();
+
+		int answer = howManyGames(salesPrice, amountOfDiscount, minimumSalesPrice, availableAmount);
+		System.out.println(answer);
+	}
+}
